@@ -7,19 +7,19 @@ class Robot
     @directions = %w(NORTH EAST SOUTH WEST)
   end
 
-  def place(coordinates)
-    coordinates = coordinates.split(',')
-    coordinates[0] = coordinates[0].to_i
-    coordinates[1] = coordinates[1].to_i
+  def place(coords)
+    coords = coords.split(',')
+    coords[0] = coords[0].to_i
+    coords[1] = coords[1].to_i
 
-    if valid?(coordinates[0], coordinates[1], coordinates[2])
+    if valid?(coords[0], coords[1], coords[2])
       @position = {
-        x: coordinates[0],
-        y: coordinates[1],
-        dir: coordinates[2]
+        x: coords[0],
+        y: coords[1],
+        dir: coords[2]
       }
     else
-      puts 'Wrong position. Please specify the other coordinates:'
+      puts 'Wrong position. Please specify the other coords:'
     end
   end
 

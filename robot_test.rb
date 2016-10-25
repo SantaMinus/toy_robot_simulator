@@ -5,7 +5,7 @@ RSpec.describe Robot do
     @robot = Robot.new
   end
 
-  describe "#place" do
+  describe '#place' do
     it 'places a @robot on a table' do
       coords = {
         x: 2,
@@ -50,7 +50,6 @@ RSpec.describe Robot do
   describe '#turn' do
     it 'should turn left' do
       @robot.place('2,4,NORTH')
-      dir = @robot.position[:dir]
       @robot.turn('LEFT')
 
       expect(@robot.position[:dir]).to eq('WEST')
@@ -58,7 +57,6 @@ RSpec.describe Robot do
 
     it 'should turn right' do
       @robot.place('2,4,WEST')
-      dir = @robot.position[:dir]
       @robot.turn('RIGHT')
 
       expect(@robot.position[:dir]).to eq('NORTH')
