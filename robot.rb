@@ -1,4 +1,8 @@
+require 'byebug'
+
 class Robot
+  attr_reader :position
+
   def initialize
     @directions = %w(NORTH EAST SOUTH WEST)
   end
@@ -22,6 +26,7 @@ class Robot
   def move
     x = @position[:x]
     y = @position[:y]
+
     case @position[:dir]
     when 'NORTH'
       y += 1
@@ -30,8 +35,9 @@ class Robot
     when 'SOUTH'
       y -= 1
     when 'WEST'
-      x -=1
+      x -= 1
     end
+
     if valid?(x, y, @position[:dir])
       @position[:x] = x
       @position[:y] = y
@@ -40,17 +46,17 @@ class Robot
     end
   end
 
-  def left
+  def turn(dir)
     direction = @directions.index(@position[:dir])
-    @position[:dir] = @directions[direction - 1]
+    @position[:dir] = case dir
+                      when 'LEFT'
+                        direction.zero? ? @directions[3] : @directions[direction - 1]
+                      when 'RIGHT'
+                        direction == 3 ? @directions[0] : @directions[direction + 1]
+                      end
   end
 
-  def right 
-    direction = @directions.index(@position[:dir])
-    @position[:dir] = @directions[direction + 1]
-  end
-
-  def valid? (x, y, dir)
+  def valid?(x, y, dir)
     (@directions.include? dir) && x < 5 && y < 5 && x > -1 && y > -1
   end
 

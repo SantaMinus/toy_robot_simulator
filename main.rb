@@ -5,10 +5,10 @@ class Main
   def self.start
     robot = Robot.new
 
-    puts 'Now command. When you want to stop, enter REPORT'
+    puts 'Now command. When you want to stop, enter STOP'
     input = gets.chomp
 
-    until input == 'REPORT'
+    until input == 'STOP'
       case input
       when /^PLACE/
         params = input.split(' ')[1]
@@ -16,16 +16,16 @@ class Main
       when 'MOVE'
         robot.move
       when 'LEFT'
-        robot.left
+        robot.turn(input)
       when 'RIGHT'
-        robot.right
+        robot.turn(input)
+      when 'REPORT'
+        robot.report
       else
-        'Unknow command'
+        'Unknown command'
       end
       input = gets.chomp
     end
-
-    robot.report
   end
 end
 
