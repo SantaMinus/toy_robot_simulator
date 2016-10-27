@@ -15,9 +15,7 @@ class Main
         robot.place(params)
       when 'MOVE'
         robot.move
-      when 'LEFT'
-        robot.turn(input)
-      when 'RIGHT'
+      when 'LEFT', 'RIGHT'
         robot.turn(input)
       when 'REPORT'
         robot.report
